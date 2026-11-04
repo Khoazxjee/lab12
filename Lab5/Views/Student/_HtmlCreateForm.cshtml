@@ -1,0 +1,7 @@
+﻿@model Student
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
+<form action="/Admin/Student/Add" method="post" enctype="multipart/form-data" class="mt-3">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="mode" value="html" />
+    <partial name="_StudentFields" model="Model" />
+</form>

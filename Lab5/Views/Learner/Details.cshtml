@@ -1,0 +1,13 @@
+@model Learner
+@{ ViewData["Title"] = "Chi tiết người học"; }
+<h1 class="h3 mb-4">@Model.LastName @Model.FirstMidName</h1>
+<div class="card border-0 shadow-sm mb-4"><div class="card-body p-4">
+<dl class="row mb-0"><dt class="col-sm-3">Mã người học</dt><dd class="col-sm-9">@Model.LearnerID</dd><dt class="col-sm-3">Ngành học</dt><dd class="col-sm-9">@Model.Major?.MajorName</dd><dt class="col-sm-3">Ngày nhập học</dt><dd class="col-sm-9">@Model.EnrollmentDate.ToString("dd/MM/yyyy")</dd></dl>
+</div></div>
+<h2 class="h5">Đăng ký học và kết quả</h2>
+<div class="table-responsive"><table class="table table-striped"><thead><tr><th>Mã môn</th><th>Môn học</th><th>Số tín chỉ</th><th>Điểm</th></tr></thead><tbody>
+@foreach (var e in Model.Enrollments.OrderBy(e => e.CourseID)) { <tr><td>@e.CourseID</td><td>@e.Course?.Title</td><td>@e.Course?.Credits</td><td>@e.Grade.ToString("0.##")</td></tr> }
+@if (Model.Enrollments.Count == 0) { <tr><td colspan="4">Chưa có đăng ký học.</td></tr> }
+</tbody></table></div>
+<a asp-action="Edit" asp-route-id="@Model.LearnerID" class="btn btn-primary">Sửa thông tin</a>
+<a asp-action="Index" class="btn btn-outline-secondary">Về danh sách</a>

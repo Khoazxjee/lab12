@@ -1,0 +1,65 @@
+@model Student
+<div asp-validation-summary="All" class="text-danger" role="alert"></div>
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" placeholder="Nguyễn Văn An" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" placeholder="sinhvien@gmail.com" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" autocomplete="new-password" />
+        <div class="form-text">Từ 8 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt.</div>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Branch" class="form-label"></label>
+        <select asp-for="Branch" asp-items="ViewBag.AllBranches" class="form-select"><option value="">Chọn ngành học</option></select>
+        <span asp-validation-for="Branch" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="DateOfBorth" class="form-label"></label>
+        <input asp-for="DateOfBorth" class="form-control" min="1963-01-01" max="2005-12-31" />
+        <div class="form-text">Khoảng ngày sinh theo đề: 01/01/1963 – 31/12/2005.</div>
+        <span asp-validation-for="DateOfBorth" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Score" class="form-label"></label>
+        <input asp-for="Score" class="form-control" type="number" min="0" max="10" step="any" placeholder="Ví dụ: 8.5" />
+        <span asp-validation-for="Score" class="text-danger"></span>
+    </div>
+    <fieldset class="col-md-6">
+        <legend class="form-label fs-6">Giới tính</legend>
+        @foreach (Gender gender in ViewBag.AllGenders)
+        {
+            <div class="form-check form-check-inline">
+                <input type="radio" asp-for="Gender" value="@gender" id="Gender@(gender)" class="form-check-input" />
+                <label for="Gender@(gender)" class="form-check-label">@(gender == Gender.Male ? "Nam" : "Nữ")</label>
+            </div>
+        }
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </fieldset>
+    <div class="col-md-6 d-flex align-items-center">
+        <div class="form-check"><input asp-for="IsRegular" class="form-check-input" /><label asp-for="IsRegular" class="form-check-label"></label></div>
+    </div>
+    <div class="col-12">
+        <label asp-for="Address" class="form-label"></label>
+        <textarea asp-for="Address" class="form-control" rows="2"></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label for="avatar" class="form-label">Ảnh đại diện</label>
+        <input type="file" name="avatar" id="avatar" class="form-control" accept=".png,.jpg,.jpeg" />
+        <div class="form-text">Không bắt buộc. PNG hoặc JPG, tối đa 2 MB.</div>
+        @Html.ValidationMessage("avatar", new { @class = "text-danger" })
+    </div>
+    <div class="col-12 d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">Thêm sinh viên</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Về danh sách</a>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+@model IEnumerable<Learner>
+<div class="card border-0 shadow-sm"><div class="table-responsive">
+<table class="table table-hover align-middle mb-0">
+    <thead class="table-light"><tr><th>Mã</th><th>Tên và tên đệm</th><th>Họ</th><th>Ngành học</th><th>Ngày nhập học</th><th>Thao tác</th></tr></thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr data-id="@item.LearnerID"><td>@item.LearnerID</td><td>@item.FirstMidName</td><td>@item.LastName</td><td>@item.Major?.MajorName</td><td>@item.EnrollmentDate.ToString("dd/MM/yyyy")</td>
+        <td class="text-nowrap"><a asp-action="Details" asp-route-id="@item.LearnerID">Chi tiết</a> · <a asp-action="Edit" asp-route-id="@item.LearnerID">Sửa</a> · <a asp-action="Delete" asp-route-id="@item.LearnerID" class="text-danger">Xóa</a></td></tr>
+    }
+    @if (!Model.Any()) { <tr><td colspan="6" class="text-center py-5 text-muted">Không có người học phù hợp.</td></tr> }
+    </tbody>
+</table></div></div>

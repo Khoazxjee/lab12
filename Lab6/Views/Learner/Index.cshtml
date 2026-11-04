@@ -1,0 +1,23 @@
+@model IEnumerable<Learner>
+@{ ViewData["Title"] = "Danh sách người học"; }
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+    <h1 class="h3 mb-0">Danh sách người học</h1>
+    <a asp-action="Create" class="btn btn-primary">+ Thêm người học</a>
+</div>
+@if (TempData["Success"] is string success) { <div class="alert alert-success" role="status">@success</div> }
+
+@await Component.InvokeAsync("Major")
+<form asp-action="Index" method="get" id="search-form" class="mb-3" style="max-width:26rem">
+    <label for="keyword" class="form-label">Tìm theo tên và tên đệm</label>
+    <input type="hidden" name="mid" value="@ViewBag.Mid" />
+    <div class="input-group">
+        <input class="form-control" type="search" id="keyword" name="keyword" value="@ViewBag.Search" placeholder="Nhập tên người học" />
+        <button id="btnSearch" type="submit" class="btn btn-primary">Tìm</button>
+    </div>
+</form>
+<div id="content" aria-live="polite" data-endpoint="@Url.Action("LearnerFilter", "Learner")" data-mode="@ViewBag.Mode">
+    <partial name="LearnerTable" model="Model" />
+</div>
+@section Scripts {
+    <script src="~/js/learner-list.js" asp-append-version="true"></script>
+}

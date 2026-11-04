@@ -1,0 +1,6 @@
+@model IEnumerable<Enrollment>
+@{ ViewData["Title"] = "Đăng ký học"; }
+<h1 class="h3 mb-4">Đăng ký học</h1>
+<div class="table-responsive"><table class="table table-striped"><thead><tr><th>Mã</th><th>Người học</th><th>Môn học</th><th>Điểm</th></tr></thead><tbody>
+@foreach (var item in Model) { <tr><td>@item.EnrollmentID</td><td>@item.Learner?.LastName @item.Learner?.FirstMidName</td><td>@item.Course?.Title</td><td>@item.Grade.ToString("0.##")</td></tr> }
+</tbody></table></div>

@@ -1,0 +1,13 @@
+@model IEnumerable<Major>
+@{
+    int? mid = ViewBag.Mid;
+}
+<nav aria-label="Lọc theo ngành">
+    <ul class="nav nav-pills flex-wrap gap-1 my-3" id="major-list">
+        <li class="nav-item"><a asp-action="Index" asp-controller="Learner" asp-route-mode="@ViewBag.Mode" asp-route-keyword="@ViewBag.Search" data-major="" class="nav-link @(mid == null ? "active" : "")">Tất cả</a></li>
+        @foreach (var major in Model)
+        {
+            <li class="nav-item" id="major-@major.MajorID"><a asp-controller="Learner" asp-action="Index" asp-route-mid="@major.MajorID" asp-route-keyword="@ViewBag.Search" asp-route-mode="@ViewBag.Mode" data-major="@major.MajorID" class="nav-link @(mid == major.MajorID ? "active" : "")">@major.MajorName</a></li>
+        }
+    </ul>
+</nav>

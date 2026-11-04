@@ -1,0 +1,10 @@
+@model Learner
+@{ ViewData["Title"] = "Sửa thông tin người học"; }
+<h1 class="h3 mb-4">Sửa thông tin người học</h1>
+<div class="card border-0 shadow-sm" style="max-width:900px"><div class="card-body p-4">
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="LearnerID" />
+    <partial name="_Fields" model="Model" />
+    <div class="mt-4 d-flex gap-2"><button class="btn btn-primary" type="submit">Lưu thay đổi</button><a asp-action="Index" class="btn btn-outline-secondary">Về danh sách</a></div>
+</form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /><script src="~/js/validation-vi.js" asp-append-version="true"></script> }

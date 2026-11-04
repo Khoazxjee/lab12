@@ -1,0 +1,6 @@
+@model IEnumerable<Major>
+@{ ViewData["Title"] = "Ngành học"; }
+<h1 class="h3 mb-4">Ngành học</h1>
+<table class="table table-striped"><thead><tr><th>Mã ngành</th><th>Ngành học</th><th>Số người học</th></tr></thead><tbody>
+@foreach (var item in Model) { <tr><td>@item.MajorID</td><td>@item.MajorName</td><td>@item.Learners.Count</td></tr> }
+</tbody></table>

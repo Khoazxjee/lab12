@@ -1,0 +1,7 @@
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand ps-3" asp-controller="Learner" asp-action="Index">Lab 6 · Phân trang</a>
+    <button class="btn btn-link btn-sm me-4" id="sidebarToggle" type="button" aria-label="Đóng mở menu"><i class="fas fa-bars"></i></button>
+    <form asp-controller="Learner" asp-action="Index" method="get" class="d-flex ms-auto me-3">
+        <div class="input-group"><input class="form-control" type="search" name="keyword" placeholder="Tìm người học..." value="@ViewBag.Search" aria-label="Tìm người học" /><button class="btn btn-primary" type="submit" aria-label="Tìm kiếm"><i class="fas fa-search"></i></button></div>
+    </form>
+</nav>

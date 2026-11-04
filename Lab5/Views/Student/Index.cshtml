@@ -1,0 +1,70 @@
+@model IEnumerable<Student>
+@{
+    ViewData["Title"] = "Danh sách sinh viên";
+    Layout = ViewData["UsePartialLayout"] is true ? "~/Views/Shared/MyLayout.cshtml" : "~/Views/Shared/MyLayoutHelper.cshtml";
+    string mode = ViewBag.LinkMode ?? "action";
+}
+<h1 class="h3 mb-3">Danh sách sinh viên</h1>
+@if (mode == "html")
+{
+    <a href="/Admin/Student/Add?mode=html" class="btn btn-primary mb-2">Thêm sinh viên</a>
+}
+else if (mode == "route")
+{
+    <a asp-route="StudentAdd" asp-route-mode="route" class="btn btn-primary mb-2">Thêm sinh viên</a>
+}
+else
+{
+    <a asp-action="Create" class="btn btn-primary mb-2">Thêm sinh viên</a>
+}
+<div class="table-responsive">
+    <table id="studentTable" class="table table-striped align-middle">
+        <thead>
+            <tr><th>Mã</th><th>Họ tên</th><th>Ngày sinh</th><th>Ngành</th><th>Giới tính</th><th>Hệ ĐT</th><th>Địa chỉ</th><th>Email</th><th>Điểm</th><th>Ảnh</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var s in Model)
+        {
+            string branch = s.Branch switch
+            {
+                Branch.IT => "CNTT",
+                Branch.BE => "Kinh tế",
+                Branch.CE => "Công trình",
+                Branch.EE => "Điện - Điện tử",
+                _ => ""
+            };
+            <tr>
+                <td>@s.Id</td><td>@s.Name</td>
+                <td class="text-nowrap">@(s.DateOfBorth?.ToString("dd/MM/yyyy") ?? "—")</td>
+                <td>@branch</td><td>@(s.Gender == Gender.Male ? "Nam" : "Nữ")</td>
+                <td>@(s.IsRegular ? "Chính quy" : "Phi chính quy")</td><td>@s.Address</td><td>@s.Email</td>
+                <td>@s.Score?.ToString("0.##")</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(s.AvatarPath))
+                    {
+                        <img src="@s.AvatarPath" class="student-avatar" alt="Ảnh của @s.Name" />
+                    }
+                    else
+                    {
+                        <span class="text-muted">—</span>
+                    }
+                </td>
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr><td colspan="10" class="text-center py-4">Không tìm thấy sinh viên.</td></tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        const table = document.querySelector("#studentTable");
+        table.addEventListener("click", function () {
+            table.style.backgroundColor = "yellow";
+            table.style.setProperty("--bs-table-bg", "yellow");
+        });
+    </script>
+}

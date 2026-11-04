@@ -1,0 +1,12 @@
+﻿html { font-size: 14px; position: relative; min-height: 100%; }
+@media (min-width: 768px) { html { font-size: 16px; } }
+body { margin-bottom: 60px; }
+.student-avatar { width: 42px; height: 42px; object-fit: cover; border-radius: 4px; }
+.branch-select { min-width: 70px; margin-top: 8px; }
+.table th { white-space: nowrap; }
+.field-validation-error { display: block; margin-top: 4px; font-size: .875rem; }
+.input-validation-error { border-color: #dc3545; }
+
+body { margin-bottom: 0; }
+#studentTable { font-size: .875rem; }
+.navbar-brand { font-size: 1.1rem; }

@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Lab6": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "Learner",
+      "applicationUrl": "http://localhost:5117",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

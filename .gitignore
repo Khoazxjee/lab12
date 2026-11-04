@@ -1,0 +1,14 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.pfx
+*.p12
+*.mdf
+*.ldf
+.env
+.env.*
+wwwroot/uploads/*
+**/wwwroot/uploads/*
+!**/wwwroot/uploads/.gitkeep

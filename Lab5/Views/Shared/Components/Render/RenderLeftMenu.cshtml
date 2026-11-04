@@ -1,0 +1,8 @@
+@model IEnumerable<MenuItem>
+<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+<div class="sb-sidenav-menu"><div class="nav">
+    <div class="sb-sidenav-menu-heading">Quản lý đào tạo</div>
+    @foreach (var item in Model) { <a class="nav-link" href="@Url.Content("~/" + item.Link)"><div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>@item.Name</a> }
+</div></div>
+<div class="sb-sidenav-footer"><div class="small">Sinh viên thực hiện</div>Hoàng Ngọc Khoa<br /><span class="small">241230762</span></div>
+</nav>

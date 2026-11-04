@@ -1,0 +1,13 @@
+@model Learner
+@{ ViewData["Title"] = "Xác nhận xóa"; bool canDelete = ViewBag.CanDelete is true; }
+<h1 class="h3 mb-4">Xác nhận xóa người học</h1>
+<div class="card border-0 shadow-sm" style="max-width:800px"><div class="card-body p-4">
+<div asp-validation-summary="All" class="text-danger" role="alert"></div>
+@if (!canDelete) { <div class="alert alert-warning">Không thể xóa người học đang có dữ liệu liên quan. Số đăng ký học: @Model.Enrollments.Count.</div> }
+else { <p>Bạn có chắc muốn xóa hồ sơ này?</p> }
+<dl class="row"><dt class="col-sm-4">Mã người học</dt><dd class="col-sm-8">@Model.LearnerID</dd><dt class="col-sm-4">Họ tên</dt><dd class="col-sm-8">@Model.LastName @Model.FirstMidName</dd><dt class="col-sm-4">Ngành học</dt><dd class="col-sm-8">@Model.Major?.MajorName</dd><dt class="col-sm-4">Ngày nhập học</dt><dd class="col-sm-8">@Model.EnrollmentDate.ToString("dd/MM/yyyy")</dd></dl>
+<form asp-action="Delete" asp-route-id="@Model.LearnerID" method="post">
+    <input type="hidden" name="id" value="@Model.LearnerID" />
+    @if (canDelete) { <button class="btn btn-danger" type="submit">Xác nhận xóa</button> }
+    <a asp-action="Index" class="btn btn-outline-secondary">Về danh sách</a>
+</form></div></div>
